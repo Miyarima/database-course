@@ -1,0 +1,39 @@
+<%- include("./../../partials/header.ejs") %>
+
+<h1 class="center">Kund odrar</h1>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">OrderNr</th>
+        <th class="th">id</th>
+        <th class="th">namn</th>
+        <th class="th">datum</th>
+        <th class="th">status</th>
+        <th class="th">Rader</th>
+        <th class="th"></th>
+        <th class="th"></th>
+    </tr>
+    <% for (const row of orders) { %>
+        <tr>
+            <td class="td"><%= row.ordernummer %></td>
+            <td class="td"><%= row.kund_id %></td>
+            <td class="td"><%= row.namn %></td>
+            <td class="td"><%= row.order_datum %></td>
+            <td class="td"><%= row.status %></td>
+            <td class="td"><%= row.rader %></td>
+            <td class="td">
+                <div class="btn-order">
+                    <a href="/eshop/customer/order/<%= row.ordernummer %>&<%= row.namn %>">lägg till</a>
+                </div>
+            </td>
+            <td class="td">
+                <div class="btn-order">
+                    <a href="/eshop/customer/order/overview/<%= row.ordernummer %>&<%= row.namn %>">orderdetaljer</a>
+                </div>
+            </td>
+        </tr>
+        
+    <% }; %>
+</table>
+
+<%- include("./../../partials/footer.ejs") %>

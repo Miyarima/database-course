@@ -1,0 +1,35 @@
+<%- include("./../../partials/header.ejs") %>
+
+<h1 class="center">Lägg till ny produkt</h1>
+
+<div class="form-style">
+    <form class="label-left" method="post">
+            <label for="id">Id</label>
+            <input id="id" type="text" name="id">
+    
+            <label for="price">Pris</label>
+            <input id="price" type="number" name="price">
+
+            <label for="name">Namn</label>
+            <input id="name" type="text" name="name">    
+
+            <label for="picture">Bildlänk</label>
+            <input id="picture" type="text" name="picture">
+
+            <label for="description">Beskrivning</label>
+            <input id="description" type="text" name="description">
+
+            <label for="category">Kategori(er)</label>
+            <input id="category" type="text" name="category">
+
+            <label for="shelf">Hylla</label>
+            <input id="shelf" type="text" name="shelf" value="AAA">
+
+            <label for="amount">Antal</label>
+            <input id="amount" type="number" name="amount" min="0" step="1" value="0">
+    
+            <input type="submit" name="doit" value="Skapa">
+    </form>
+</div>
+
+<%- include("./../../partials/footer.ejs") %>

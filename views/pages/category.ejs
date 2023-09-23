@@ -1,0 +1,16 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center">Kategorier</h1>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Kategorier</th>
+    </tr>
+<% for (const row of category) { %>
+    <tr>
+        <td class="td"><%= row.namn %></td>
+    </tr>
+<% }; %>
+</table>
+
+<%- include("./../partials/footer.ejs") %>

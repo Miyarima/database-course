@@ -1,0 +1,37 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center">Produkter</h1>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Produkt id</th>
+        <th class="th">Namn</th>
+        <th class="th">Pris</th>
+        <th class="th">Antal</th>
+        <th class="th">Kategori</th>
+        <th class="th"></th>
+    </tr>
+    <% for (let i = 0; i < products.length; i++) { %>
+        <tr>
+            <td class="td"><%= products[i].produkt_kod %></td>
+            <td class="td"><%= products[i].namn %></td>
+            <td class="td"><%= products[i].pris %> kr</td>
+            <td class="td"><%= amount[i].antal %></td>
+            <td class="td"><%= products[i].kategori %></td>
+            <td class="td">
+                | <a href="/eshop/product/edit/<%= products[i].produkt_kod %>">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+                <a href="/eshop/product/delete/<%= products[i].produkt_kod %>">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+    <% }; %>
+</table>
+
+<div class="btn">
+    <a href="/eshop/product/create">Lägg till ny produkt</a>
+</div>
+
+<%- include("./../partials/footer.ejs") %>

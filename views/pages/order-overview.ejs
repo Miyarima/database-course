@@ -1,0 +1,59 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center big-margin">Order översikt #<%= orderNummer %></h1>
+
+<form class="center" method="post" action="/eshop/customer/picklist">
+    <input type="text" name="order" value="<%= orderNummer %>" hidden>
+    <input class="post-btn" type="submit" name="doit" value="Plocklista">
+</form>
+
+<% orderDetails = orderDetails[0] %>
+
+<% if (orderDetails.status === "skickad") { %>
+    <br><form class="center" method="post" action="/eshop/customer/invoice">
+        <input type="text" name="order" value="<%= orderNummer %>" hidden>
+        <input class="post-btn" type="submit" name="doit" value="Faktura">
+    </form>
+<% }; %>
+<div class="overview">
+    <p>Kund id: <%= orderDetails.kund_id %></p>
+    <p>Namn: <%= orderDetails.namn %></p>
+    <p>Adress: <%= orderDetails.adress %></p>
+    <p>Postnummer: <%= orderDetails.postnummer %></p>
+    <p>Ort: <%= orderDetails.ort %></p>
+    <p>Telefon: <%= orderDetails.telefon %></p>
+</div><br><br>
+<div class="overview">
+    <p>Ordernummer: <%= orderDetails.ordernummer %></p>
+    <p>Order datum: <%= orderDetails.order_datum %></p>
+    <p>Order status: <strong><%= orderDetails.status %></strong></p>
+    <p>Order rader: <%= orderDetails.rader %></p>
+</div>
+
+
+<% totalCost = 0 %>
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Order id</th>
+        <th class="th">Produkt id</th>
+        <th class="th">Antal</th>
+        <th class="th">Pris</th>
+    </tr>
+    <% for (const row of products) { %>
+        <tr>
+            <td class="td"><%= row.order_id %></td>
+            <td class="td"><%= row.produkt_id %></td>
+            <td class="td"><%= row.antal %></td>
+            <td class="td"><%= row.pris %> kr</td>
+            <% totalCost +=  (row.antal * row.pris) %>
+        </tr>
+    <% }; %>
+</table>
+<p class="center"><strong>Total pris: <%= totalCost %> kr</strong></p>
+
+<form class="center" method="post" action="/eshop/customer/ordering">
+    <input type="text" name="order" value="<%= orderNummer %>" hidden>
+    <input class="post-btn" type="submit" name="doit" value="Beställ">
+</form>
+
+<%- include("./../partials/footer.ejs") %>

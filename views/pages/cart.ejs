@@ -1,0 +1,27 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center big-margin"><%= kund %>'s kundvag, order: <%= orderNummer %></h1>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Order id</th>
+        <th class="th">Produkt id</th>
+        <th class="th">Antal</th>
+        <th class="th">Pris</th>
+    </tr>
+    <% for (const row of products) { %>
+        <tr>
+            <td class="td"><%= row.order_id %></td>
+            <td class="td"><%= row.produkt_id %></td>
+            <td class="td"><%= row.antal %></td>
+            <td class="td"><%= row.pris %> kr</td>
+        </tr>
+    <% }; %>
+</table>
+
+<form class="center" method="post" action="/eshop/customer/ordering">
+    <input type="text" name="order" value="<%= orderNummer %>" hidden>
+    <input class="post-btn" type="submit" name="doit" value="Beställ">
+</form>
+
+<%- include("./../partials/footer.ejs") %>

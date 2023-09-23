@@ -1,0 +1,32 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center">Lager</h1>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Id</th>
+        <th class="th">Namn</th>
+        <th class="th">Hylla</th>
+        <th class="th">Antal</th>
+        <th class="th"></th>
+    </tr>
+    <% for (const row of products) { %>
+        <tr>
+            <td class="td"><%= row.id %></td>
+            <td class="td"><%= row.namn %></td>
+            <td class="td"><%= row.hylla %></td>
+            <td class="td"><%= row.antal %></td>
+            <td class="td">
+                | <a href="/eshop/stock/edit/<%= row.id %>&<%= row.hylla %>">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+    <% }; %>
+</table>
+
+<div class="btn">
+    <a href="/eshop/stock/create">Lägg till ny produkt</a>
+</div>
+
+<%- include("./../partials/footer.ejs") %>

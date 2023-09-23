@@ -1,0 +1,27 @@
+<%- include("./../../partials/header.ejs") %>
+
+<% info = info[0] %>
+<h1 class="center">Uppdaterar "<%= info.namn %>"</h1>
+
+<div class="form-style">
+    <form class="label-left" method="post">
+            <label for="id">Id</label>
+            <input id="id" type="text" name="id" value="<%= info.produkt_kod %>" readonly>
+    
+            <label for="balance">Pris</label>
+            <input id="balance" type="number" name="price" value="<%= info.pris %>">
+
+            <label for="name">Namn</label>
+            <input id="name" type="text" name="name" value="<%= info.namn %>">    
+
+            <label for="balance">Bildlänk</label>
+            <input id="balance" type="text" name="picture" value="<%= info.bildlank %>">
+
+            <label for="balance">Beskrivning</label>
+            <input id="balance" type="text" name="description" value="<%= info.beskrivning %>">
+    
+            <input type="submit" name="doit" value="Uppdatera">
+    </form>
+</div>
+
+<%- include("./../../partials/footer.ejs") %>

@@ -1,0 +1,34 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center big-margin">Plocklista #<%= products[0].ordernummer %></h1>
+
+<div class="overview">
+    <p>Ordernummer: <%= products[0].ordernummer %></p>
+    <p>Order datum: <%= products[0].order_datum %></p>
+</div>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Id</th>
+        <th class="th">Produkt</th>
+        <th class="th">Antal</th>
+        <th class="th">Hylla</th>
+        <th class="th">Status</th>
+    </tr>
+    <% for (const row of products) { %>
+        <tr>
+            <td class="td"><%= row.id %></td>
+            <td class="td"><%= row.produkt %></td>
+            <td class="td"><%= row.antal %></td>
+            <td class="td"><%= row.hylla %></td>
+            <td class="td"><%= row.lager_status %></td>
+        </tr>
+    <% }; %>
+</table>
+
+<form class="center" method="post" action="/eshop/customer/ship">
+    <input type="text" name="order" value="<%= products[0].ordernummer %>" hidden>
+    <input class="post-btn" type="submit" name="doit" value="Skicka order">
+</form>
+
+<%- include("./../partials/footer.ejs") %>

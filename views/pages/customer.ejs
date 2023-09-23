@@ -1,0 +1,33 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center">Kunder</h1>
+
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Namn</th>
+        <th class="th">Id</th>
+        <th class="th">Adress</th>
+        <th class="th">Postnr</th>
+        <th class="th">Ort</th>
+        <th class="th">Telefon</th>
+        <th class="th">order</th>
+    </tr>
+    <% for (const row of kund) { %>
+        <tr>
+            <td class="td"><%= row.namn %></td>
+            <td class="td"><%= row.id %></td>
+            <td class="td"><%= row.adress %></td>
+            <td class="td"><%= row.postnummer %></td>
+            <td class="td"><%= row.ort %></td>
+            <td class="td"><%= row.telefon %></td>
+            <td class="td">
+                <form method="post">
+                    <input type="text" name="name" value="<%= row.id %>" hidden>
+                    <input class="post-btn" type="submit" name="doit" value="Skapa">
+                </form>
+            </td>
+        </tr>
+    <% }; %>
+</table>
+
+<%- include("./../partials/footer.ejs") %>

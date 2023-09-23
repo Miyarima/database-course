@@ -1,0 +1,42 @@
+<%- include("./../../partials/header.ejs") %>
+
+<h1 class="center big-margin">Lägg till produkter i <%= kund %>'s order: <%= orderNummer %></h1>
+
+<div class="btn">
+    <a href="/eshop/customer/order/cart/<%= orderNummer %>&<%= kund %>">Visa kundvagn</a>
+</div>
+
+<% for (const row of products) { %>
+<div class="order-prod">
+    <img class="img prod-img" src="<%= row.bildlank %>">
+    <h1 class="prod-name"><%= row.namn %></h1>
+    <div class="prod-desc">
+        <%= row.beskrivning %><br><br>
+        kategori: <%= row.kategori %>
+    </div>
+    <div class="prod-price">
+        <% if (row.antal != 0) { %>
+            <strong class="red-price"><%= row.pris %>:-</strong><br><br><br>
+            Kvar i lager: <%= row.antal %>
+        <% } else { %>
+            <strong class="red-price"><%= row.pris %>:-</strong><br><br><br>
+            Slut i lager
+        <% }; %>
+    </div>
+    <div class="prod-order">
+        <% if (row.antal != 0) { %>
+        <form method="post">
+            <input type="text" name="customer" value="<%= kund %>" hidden>
+            <input type="text" name="order" value="<%= orderNummer %>" hidden>
+            <input type="text" name="name" value="<%= row.produkt_kod %>" hidden>
+            <input type="number" name="cost" value="<%= row.pris %>" hidden>
+            <input class="amount" type="number" name="numb" value="1" min="1" max="<%= row.antal %>" step="1">
+            <input class="post-btn post-btn-margin" type="submit" name="doit" value="Lägg till i order">
+        </form>
+        <% }; %>
+    </div>
+    
+</div>
+<% }; %>
+
+<%- include("./../../partials/footer.ejs") %>

@@ -1,0 +1,31 @@
+<%- include("./../partials/header.ejs") %>
+
+<h1 class="center big-margin">Faktura #<%= invoice[0].ordernummer %></h1>
+
+<div class="overview">
+    <p>Ordernummer: <%= invoice[0].ordernummer %></p>
+    <p>Kund Id: <%= invoice[0].kund_id %></p>
+    <p>Skickad: <%= invoice[0].order_datum %></p>
+    <p>Status: <strong><%= invoice[0].status %></strong></p>
+    <p>Betalad: <%= invoice[0].betald %></p>
+</div>
+
+<% totalCost = 0 %>
+<table class="table">
+    <tr class="tr-head">
+        <th class="th">Produkt</th>
+        <th class="th">Antal</th>
+        <th class="th">Pris</th>
+    </tr>
+    <% for (const row of invoice) { %>
+        <tr>
+            <td class="td"><%= row.produkt %></td>
+            <td class="td"><%= row.antal %></td>
+            <td class="td"><%= row.pris %> kr</td>
+            <% totalCost +=  (row.antal * row.pris) %>
+        </tr>
+    <% }; %>
+</table>
+<p class="center"><strong>Total pris: <%= totalCost %> kr</strong></p>
+
+<%- include("./../partials/footer.ejs") %>

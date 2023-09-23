@@ -1,0 +1,20 @@
+<%- include("./../../partials/header.ejs") %>
+
+<h1 class="center">Lägg till ny produkt</h1>
+
+<div class="form-style">
+    <form class="label-left" method="post">
+        <label for="id">Id</label>
+        <input id="id" type="text" name="id" value="">
+
+        <label for="shelf">Hylla</label>
+        <input id="shelf" type="text" name="shelf" value="">
+
+        <label for="amount">Antal</label>
+        <input id="amount" type="text" name="amount" value="">
+
+        <input type="submit" name="doit" value="Lägg till">
+    </form>
+</div>
+
+<%- include("./../../partials/footer.ejs") %>
